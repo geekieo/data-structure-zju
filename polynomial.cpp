@@ -42,7 +42,7 @@ double f2(int n, double a[], double x){
     return p;
 }
 
-double cal_duration(int n, double a[], double x, double (*f)(int, double[], double),char funcname[64]){
+void cal_duration(int n, double a[], double x, double (*f)(int, double[], double),char funcname[64]){
     start = clock();
     /*重复运行充分多次，放大运算时间，防止时间太短不显示。每次运算时间可取平均。*/
     for (int i =0; i<MAXK; i++)

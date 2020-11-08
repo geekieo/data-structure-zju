@@ -21,12 +21,13 @@ param x 多项式未知数x
 double f1(int n, double a[], double x){
     int i;
     double p = a[0];
-    for( i = 1; i <=n; i++ )
-        p += (a[i] * pow(x,i));
+    for( i = 1; i <=n; i++ ){
+        p += (a[i] * pow(x,i)); //每次运行i-1次乘法,总共(n^2+n)/2次乘法
+    }                           //T(n)=C1*n^2+C2*n
     return p;
 }
 
-/*多项式采用合并同类项，大大降低时间复杂度
+/*多项式采用合并同类项，大大降低乘法次数，从而降低时间复杂度
 f(x) = a0 + x*(a1 + x*(a2 + x*(a3 + x*(...am+(x*an)))))
 param n 多项式最高次幂，多项式长度为n+1
 param a[] 多项式系数
@@ -36,8 +37,8 @@ double f2(int n, double a[], double x){
     int i;
     double p = a[n]; //
     for (i = n; i> 0; i--){
-        p = a[i-1] + x*p;
-    } 
+        p = a[i-1] + x*p;   //每次运行1次乘法,总共n次乘法
+    }                       //T(n)=C*n
     return p;
 }
 
@@ -59,3 +60,9 @@ int main(){
     cal_duration(MAXN-1, a, 1.1, f1,"f1");
     cal_duration(MAXN-1, a, 1.1, f2,"f2");
 }
+/* output
+f1 ticks = 8410276.000000
+duration = 8.41e+00
+f2 ticks = 1362730.000000
+duration = 1.36e+00
+*/

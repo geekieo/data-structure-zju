@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+/* 复杂度分析
+最坏:S(n) = n; T(n) = log2(n);
+最好:S(n) = n; T(n) = 1;
+*/
 int binary_search(int list[], int head, int tail, int target){
     while (head < tail){
         int mid = (int)(tail - head)/2 + head;
